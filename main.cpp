@@ -23,7 +23,7 @@ void testPairToNumber(
 
 void displayColorCode(int pairNumber){
     TelCoColorCoder::ColorPair colorPair = TelCoColorCoder::GetColorFromPairNumber(pairNumber);
-    std::cout << colorPair.ToString() << std::endl;
+    std::cout << pairNumber << "\t\t" << colorPair.ToString() << std::endl;
 }
 
 int main() {
@@ -35,9 +35,7 @@ int main() {
 
     std::cout << std::endl << "Color Code Manual" << std::endl;
     std::cout << "Pair number" << "\t" << "Color Code" << std::endl;
-    for (int pairNumber = 1; pairNumber < TelCoColorCoder::numberOfMajorColors * TelCoColorCoder::numberOfMinorColors + 1 ; pairNumber++) {
-        std::cout << pairNumber << "\t\t";
-        displayColorCode(pairNumber);
-    }
+    for (int pairNumber = 0; pairNumber < TelCoColorCoder::numberOfMajorColors * TelCoColorCoder::numberOfMinorColors ; pairNumber++)
+        displayColorCode(pairNumber + 1);
     return 0;
 }

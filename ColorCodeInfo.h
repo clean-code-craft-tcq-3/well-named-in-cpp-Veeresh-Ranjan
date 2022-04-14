@@ -25,7 +25,7 @@ void testPairToNumber(
 void displayColorCode(){
     std::cout << std::endl << "***+++---Color Code Manual---+++***" << std::endl;
     std::cout << "Pair number" << "\t" << "Color Code" << std::endl;
-    for (int pairNumber = 1; pairNumber < numberOfMajorColors * numberOfMinorColors + 1 ; pairNumber++)
+    for (int pairNumber = 1; pairNumber < ((numberOfMajorColors * numberOfMinorColors) + 1) ; pairNumber++)
     {
         ColorPair colorPair = GetColorFromPairNumber(pairNumber);
         std::cout << pairNumber << "\t\t" << colorPair.ToString() << std::endl;

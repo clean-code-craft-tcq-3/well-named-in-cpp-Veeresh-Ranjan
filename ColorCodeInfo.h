@@ -1,13 +1,45 @@
-#include "main.h"
+#include "TeleCommColorCoder.h"
+using namespace TeleCommColorCoder;
 
-TelCoColorCoder::ColorPair TelCoColorCoder::GetColorFromPairNumber(int pairNumber) {
+ColorPair TeleCommColorCoder::GetColorFromPairNumber(int pairNumber) {
         int zeroBasedPairNumber = pairNumber - 1;
         MajorColor majorColor =
             (MajorColor)(zeroBasedPairNumber / numberOfMinorColors);
         MinorColor minorColor =
             (MinorColor)(zeroBasedPairNumber % numberOfMinorColors);
-        return TelCoColorCoder::ColorPair(majorColor, minorColor);
+        return ColorPair(majorColor, minorColor);
     }
-    int TelCoColorCoder::GetPairNumberFromColor(MajorColor major, MinorColor minor) {
+    int TeleCommColorCoder::GetPairNumberFromColor(MajorColor major, MinorColor minor) {
         return major * numberOfMinorColors + minor + 1;
     }
+
+void testNumberToPair(int pairNumber,
+    MajorColor expectedMajor,
+    MinorColor expectedMinor)
+{
+    ColorPair colorPair =
+        GetColorFromPairNumber(pairNumber);
+    std::cout << "Got pair " << colorPair.ToString() << std::endl;
+    assert(colorPair.getMajor() == expectedMajor);
+    assert(colorPair.getMinor() == expectedMinor);
+}
+
+void testPairToNumber(
+    MajorColor major,
+    MinorColor minor,
+    int expectedPairNumber)
+{
+    int pairNumber = GetPairNumberFromColor(major, minor);
+    std::cout << "Got pair number " << pairNumber << std::endl;
+    assert(pairNumber == expectedPairNumber);
+}
+
+void displayColorCode(){
+    std::cout << std::endl << "***+++---Color Code Manual---+++***" << std::endl;
+    std::cout << "Pair number" << "\t" << "Color Code" << std::endl;
+    for (int pairNumber = 1; pairNumber < numberOfMajorColors * numberOfMinorColors + 1 ; pairNumber++)
+    {
+        ColorPair colorPair = GetColorFromPairNumber(pairNumber);
+        std::cout << pairNumber << "\t\t" << colorPair.ToString() << std::endl;
+    }
+}
